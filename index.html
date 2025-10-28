@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>EL GRAN DESAFÍO jusjus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="startScreen" class="game-screen active">
+        <h1>EL GRAN DESAFÍO jusjus</h1>
+        <img src="assets/player.png" alt="Tu Nave" class="start-ship-preview">
+        <p>Tu misión es destruir al enemigo super fuerte y ultra guapo, con habilidad y perseverancia, tal como enfrentamos todo juntos. ¡Estoy seguro que podrás mi niña!</p>
+        <p class="instructions">
+            - Arrastra tu nave para moverte.<br>
+            - Tu nave disparará automáticamente.<br>
+            - Esquiva los disparos del enemigo. Tienes 3 vidas.<br>
+            - Impacta al Guardián 10 veces para ganar.
+        </p>
+        <button id="startButton">¡Proteger Nuestro Amor!</button>
+    </div>
+
+    <div id="gameScreen" class="game-screen">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <div id="victoryScreen" class="game-screen">
+        <h1>¡ERES LA MEJORRR, BOFFF!</h1>
+        <img src="assets/victory_image.JPEG" alt="Imagen de victoria" class="victory-image">
+        <p class="victory-message">
+            ¡HAS GANADO! Quiero que sepas que con esa valentía, sé que juntos podemos superar cualquier cosa. Eres mi alegría, mi todo. Gracias por luchar a mi lado (y contra mi jusjus). ¡TE AMOOOO FELICES 3 MESESSS!
+        </p>
+        <a href="recompensa.html" target="_blank" class="reward-button">Reclama tu Recompensa Especial (solo para ti jejeje)</a>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

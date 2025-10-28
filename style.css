@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Evita barras de desplazamiento */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a0a2c; /* Fondo oscuro para el espacio */
+    color: #e0e0e0;
+    text-align: center;
+}
+
+.game-screen {
+    position: absolute; /* Para superponerlos */
+    width: 100%;
+    height: 100%;
+    display: none; /* Por defecto ocultas, JS las mostrará */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a0a2c;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.game-screen.active {
+    display: flex; /* Muestra la pantalla activa */
+}
+
+h1 {
+    color: #ff69b4; /* Rosa corazón */
+    margin-bottom: 20px;
+    font-size: 2.2em;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-size: 1.1em;
+}
+
+.instructions {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+button, .reward-button {
+    background-color: #4CAF50; /* Verde para empezar */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3em;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Para el botón de recompensa que es un enlace */
+    display: inline-block; /* Para que el enlace se vea como botón */
+}
+
+button:hover, .reward-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos específicos para la pantalla de victoria */
+#victoryScreen {
+    background-color: #2c0a4d; /* Un color diferente para la victoria */
+}
+
+#victoryScreen h1 {
+    color: #ffdd00; /* Dorado para la victoria */
+}
+
+.victory-image {
+    max-width: 80%;
+    max-height: 250px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(255, 221, 0, 0.5);
+}
+
+.victory-message {
+    font-size: 1.2em;
+    color: #f0f0f0;
+    margin: 0 10px; /* Pequeño margen para que no toque los bordes */
+}
+
+/* Estilos para el canvas del juego */
+#gameCanvas {
+    background-color: #000000; /* Fondo del espacio */
+    border: 2px solid #555;
+    /* El tamaño se ajustará en JavaScript */
+}
+
+.start-ship-preview {
+    max-width: 100px;
+    margin: 20px auto;
+    display: block;
+}
