@@ -3,23 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>EL GRAN DESAFÍO jusjus</title>
+    <title>me gustas pila</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="startScreen" class="game-screen active">
-        <h1>EL GRAN DESAFÍO jusjus</h1>
-        <img src="assets/player.png" alt="Tu Nave" class="start-ship-preview">
-        <p>Tu misión es destruir al enemigo super fuerte y ultra guapo, con habilidad y perseverancia, tal como enfrentamos todo juntos. ¡Estoy seguro que podrás mi niña!</p>
-        <p class="instructions">
-            - Arrastra tu nave para moverte.<br>
-            - Tu nave disparará automáticamente.<br>
-            - Esquiva los disparos del enemigo. Tienes 3 vidas.<br>
-            - Impacta al Guardián 10 veces para ganar.
-        </p>
-        <button id="startButton">¡Proteger Nuestro Amor!</button>
+    <h1>Me gustas jusjus</h1>
+    
+    <div class="character-selection">
+        <h2>Elige tu personaje exótico</h2>
+        <div class="character-display">
+            <button id="prevCharacter" class="arrow-button">←</button>
+            
+            <div class="character-info">
+                <img id="playerPreview" src="assets/player.png" alt="Nave Seleccionada" class="start-ship-preview">
+                <p id="characterName">LA PRO</p> </div>
+            
+            <button id="nextCharacter" class="arrow-button">→</button>
+        </div>
     </div>
+    
+    <p>Mi amor, el mundo a veces nos lanza desafíos, como este enemigo. Tu misión es destruirlo, con habilidad y perseverancia, tal como enfrentamos todo juntos. ¡Tu victoria es nuestro futuro!</p>
+    <p class="instructions">
+        - Arrastra tu nave para moverte.<br>
+        - Tu nave disparará automáticamente.<br>
+        - Esquiva los disparos del enemigo. Tienes 3 vidas.<br>
+        - Impacta al Guardián 15 veces para ganar.
+    </p>
+    <button id="startButton">¡Proteger Nuestro Amor!</button>
+</div>
 
     <div id="gameScreen" class="game-screen">
         <canvas id="gameCanvas"></canvas>

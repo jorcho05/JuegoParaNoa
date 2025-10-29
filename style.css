@@ -102,3 +102,55 @@ button:hover, .reward-button:hover {
     margin: 20px auto;
     display: block;
 }
+
+/* Estilos para la selección de personaje */
+.character-selection {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 350px;
+}
+
+.character-selection h2 {
+    font-size: 1.3em;
+    color: #ff69b4;
+    margin-bottom: 15px;
+}
+
+.character-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.arrow-button {
+    background-color: #ff69b4;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
+    line-height: 1; /* Para centrar el carácter de la flecha */
+    height: 40px;
+    transition: background-color 0.2s;
+}
+
+.arrow-button:active {
+    background-color: #a90a44;
+}
+
+.character-info {
+    text-align: center;
+    margin: 0 10px;
+}
+
+.character-info #characterName {
+    font-size: 1.2em;
+    color: #ffdd00;
+    font-weight: bold;
+    margin-top: 5px;
+}

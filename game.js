@@ -5,16 +5,31 @@ const startButton = document.getElementById('startButton');
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+// Elementos para el selector de personajes
+const playerPreview = document.getElementById('playerPreview');
+const characterNameDisplay = document.getElementById('characterName');
+const prevButton = document.getElementById('prevCharacter');
+const nextButton = document.getElementById('nextCharacter');
+
+
 // --- Configuración Inicial ---
 const GAME_WIDTH = window.innerWidth;
 const GAME_HEIGHT = window.innerHeight;
 canvas.width = GAME_WIDTH;
 canvas.height = GAME_HEIGHT;
 
-// --- Carga de Imágenes ---
-// Asegúrate de que las rutas y los nombres de los archivos sean correctos.
-const playerImg = new Image();
-playerImg.src = 'assets/player.png';
+// --- Lista de Personajes ---
+const characters = [
+    { name: "LA PRO", src: 'assets/player.png' },
+    { name: "CRAZY NAO", src: 'assets/player_2.png' },
+    { name: "CRISTO REY", src: 'assets/player_3.png' },
+    { name: "PINTURRIN", src: 'assets/player_4.png' }
+];
+let currentCharacterIndex = 0; // Índice del personaje seleccionado
+
+
+// --- Carga de Imágenes (Solo las imágenes fijas se cargan al inicio) ---
+const playerImg = new Image(); // La fuente se asigna al iniciar el juego
 const enemyImg = new Image();
 enemyImg.src = 'assets/enemy.png';
 const playerBulletImg = new Image();
@@ -23,24 +38,22 @@ const enemyBulletImg = new Image();
 enemyBulletImg.src = 'assets/enemy_bullet.png';
 
 let imagesLoaded = 0;
-const totalImages = 4;
+// Solo contamos las imágenes que no cambian en el selector (3 fijas)
+const totalImages = 3; 
 
 function imageLoaded() {
     imagesLoaded++;
     if (imagesLoaded === totalImages) {
-        console.log("Todas las imágenes cargadas.");
+        console.log("Imágenes fijas cargadas.");
     }
 }
 
-playerImg.onload = imageLoaded;
+// Escuchamos la carga de las imágenes fijas
 enemyImg.onload = imageLoaded;
 playerBulletImg.onload = imageLoaded;
 enemyBulletImg.onload = imageLoaded;
-// Manejo simple de errores de carga (opcional)
-playerImg.onerror = () => console.error("Error al cargar player.png");
+// Manejo de errores de carga (opcional)
 enemyImg.onerror = () => console.error("Error al cargar enemy.png");
-playerBulletImg.onerror = () => console.error("Error al cargar player_bullet.png");
-enemyBulletImg.onerror = () => console.error("Error al cargar enemy_bullet.png");
 
 
 // --- Variables del Juego ---
@@ -71,6 +84,7 @@ let enemyBullets = [];
 
 let gameOver = false;
 let gameWon = false;
+
 
 // --- Funciones de Dibujo ---
 function drawPlayer() {
@@ -251,6 +265,25 @@ function checkCollision(obj1, obj2) {
 }
 
 
+// --- Lógica del Menú de Selección ---
+
+function updateCharacterSelection() {
+    const char = characters[currentCharacterIndex];
+    playerPreview.src = char.src;
+    characterNameDisplay.textContent = char.name;
+}
+
+prevButton.addEventListener('click', () => {
+    currentCharacterIndex = (currentCharacterIndex - 1 + characters.length) % characters.length;
+    updateCharacterSelection();
+});
+
+nextButton.addEventListener('click', () => {
+    currentCharacterIndex = (currentCharacterIndex + 1) % characters.length;
+    updateCharacterSelection();
+});
+
+
 // --- Bucle principal del juego (Game Loop) ---
 function gameLoop() {
     if (gameOver) {
@@ -282,12 +315,26 @@ function gameLoop() {
 
 // --- Control de Pantallas y Reinicio ---
 function startGame() {
-    startScreen.classList.remove('active');
-    gameScreen.classList.add('active');
-    resetGame();
-    gameOver = false;
-    gameWon = false;
-    requestAnimationFrame(gameLoop);
+    // 1. Asignar la imagen seleccionada y esperar a que cargue
+    playerImg.src = characters[currentCharacterIndex].src; 
+
+    // 2. Definir la función que inicia el juego
+    const iniciarJuego = () => {
+        startScreen.classList.remove('active');
+        gameScreen.classList.add('active');
+        resetGame();
+        gameOver = false;
+        gameWon = false;
+        requestAnimationFrame(gameLoop);
+    };
+
+    // 3. Esperamos a que la imagen cargue (necesario si es la primera vez que se selecciona)
+    playerImg.onload = iniciarJuego;
+
+    // 4. Si la imagen ya estaba cargada, la iniciamos directamente
+    if (playerImg.complete) {
+        iniciarJuego();
+    }
 }
 
 function showVictoryScreen() {
@@ -318,4 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startScreen.classList.add('active');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    
+    // Inicializa la vista del personaje al cargar
+    updateCharacterSelection(); 
 });
